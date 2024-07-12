@@ -1,0 +1,256 @@
+* {
+    box-sizing: border-box;
+    font-family: "Plus Jakarta Sans";
+}
+
+body {
+    margin: 0px;
+    background-color: hsl(202, 86%, 94%);
+
+}
+
+.main {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 50px;
+    height: 75%;
+    display: flex;
+    flex-direction: row;
+
+}
+
+header input {
+    text-decoration: underline;
+    color: hsl(200, 24%, 40%);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    padding: 20px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.amountMor {
+    display: flex;
+    flex-direction: column;
+    color: hsl(200, 24%, 40%);
+
+}
+
+
+
+.amountMor input {
+    padding-left: 25px;
+    background: url("assets/images/icon-calculator.svg") no-repeat left;
+    background-size: 20px;
+}
+
+.amountMor input {
+    width: 80%;
+    margin: 0px 50px 0px 20px;
+    border: 2px solid hsl(200, 24%, 40%);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.enter {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.term h4,
+.rate h4 {
+    color: hsl(200, 24%, 40%);
+
+}
+
+header input[type='reset']:hover {
+    color: 'white';
+}
+
+.term input,
+.rate input {
+    border: 1px solid hsl(200, 24%, 40%);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.term {
+    display: flex;
+    flex-direction: column;
+}
+
+.rate {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.amountMor span,
+.term span,
+.rate span {}
+
+
+
+.photo {
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-bottom-left-radius: 50px;
+    padding: 20px;
+
+    padding-bottom: 100px;
+}
+
+.photo img {
+    height: 40%;
+    width: 40%;
+    align-self: center;
+}
+
+.photo h2 {
+    font-weight: bold;
+    color: white;
+}
+
+.photo p {
+    color: hsl(203, 41%, 72%);
+}
+
+.morCho {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+
+.butCon img {
+    margin-left: 10px;
+}
+
+
+.butCon {
+    margin-top: 20px;
+    padding: 5px;
+    width: 50%;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    background-color: #d7da2f;
+    transition: 0.3s ease;
+    color: hsl(202, 55%, 16%);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -ms-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+}
+
+.butCon input {
+    font-weight: bold;
+
+}
+
+.butCon:hover {
+    cursor: pointer;
+    filter: brightness(1.05);
+    -webkit-filter: brightness(1.05);
+}
+
+input[type='text'] {
+    padding: 10px;
+}
+
+.butCon input {
+
+    border: none;
+    background-color: transparent;
+}
+
+.re:hover,
+.in:hover {
+    border-color: #d7da2f;
+}
+
+.re,
+.in {
+    padding: 10px;
+    border: 1px solid hsl(202, 55%, 16%);
+    margin-bottom: 10px;
+
+}
+
+.typing {
+    color: hsl(200, 26%, 54%);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.re label,
+.in label {
+    color: hsl(202, 55%, 16%);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+
+.photo {
+    width: 50%;
+    background-color: hsl(202, 55%, 16%);
+
+}
+
+input[type='text']:focus {
+    outline-color: hsl(61, 70%, 52%);
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+    }
+
+
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mortgage Repayment Calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="main">
+
+            <form>
+                <header>
+                    <h2>Mortgage Calculator</h2>
+                    <input type="reset" value="Clear All">
+                </header>
+                <div class="amountMor">
+                    <h4>Mortgage Amount</h4>
+                    <input type="text">
+                    <span>$</span>
+                </div>
+                <div class="enter">
+                    <div class="term">
+                        <h4>
+                            Mortgage Term
+                        </h4>
+                        <input type="text">
+                        <span>years</span>
+                    </div>
+                    <div class="rate">
+                        <h4>
+                            Interest Rate
+                        </h4>
+                        <input type="text">
+                        <span>%</span>
+                    </div>
+                </div>
+                <div class="morCho">
+                    <div class="typing">
+                        Mortgage Type
+                    </div>
+                    <div class="re">
+
+                        <input type="radio" name="check" id="re" value="re">
+
+                        <label for="re">
+                            Repayment
+                        </label>
+                    </div>
+                    <div class="in">
+                        <input type="radio" name="check" id="in" value="in">
+                        <!-- Don't forget to input the name to make the name and the make the checkbox may done multiple time -->
+                        <label for="in">
+                            Interest Only
+                        </label>
+
+                    </div>
+
+                </div>
+                <div class="butCon">
+                    <img src="assets/images/icon-calculator.svg">
+                    <input type="submit" value="Calculate Repayments">
+                </div>
+
+            </form>
+            <div class="photo">
+                <img src="assets/images/illustration-empty.svg">
+                <h2>Results shown here</h2>
+                <p>Complete the form and click calculate repayments to seee what your monthly repayments would be</p>
+            </div>
+
+
+
+        </div>
+
+
+        <script src="main.js"></script>
+    </body>
+
+</html>
