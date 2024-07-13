@@ -5,10 +5,49 @@ let validation1 = document.querySelector(".amountMor input");
 let validation2 = document.querySelector(".term input");
 let validation3 = document.querySelector(".rate input");
 let span1 = document.querySelectorAll("input[type='text'] ~ span");
-
 let valids = [validation1, validation2, validation3];
 
+/////////////////////////////////////////////////////
+//////////////////////////Take care of this option///
+/////////////////////////////////////////////////////
+let option1 = document.getElementById("re");
+let option2 = document.getElementById("in");
+let isActive = false; // Initialize variable
 
+// Function to update isActive based on radio button selection
+function updateIsActive() {
+
+    let option1 = document.getElementById("re");
+    let option2 = document.getElementById("in");
+
+    if (option1.checked) {
+        isActive = true;
+        console.log(isActive);
+
+    } else if (option2.checked) {
+
+        isActive = false;
+        console.log(isActive);
+
+    } else {
+        console.error('One or both radio buttons are not found in the DOM.');
+    }
+}
+
+// Check if DOM is fully loaded before executing JavaScript
+document.addEventListener('DOMContentLoaded', function () {
+    let option1 = document.getElementById("re");
+    let option2 = document.getElementById("in");
+
+    if (option1 && option2) {
+        option1.addEventListener('change', updateIsActive);
+        option2.addEventListener('change', updateIsActive);
+    } else {
+        console.error('One or both radio buttons are not found in the DOM.');
+    }
+});
+//////////////// You have here the value of the option1.addEventListener
+/////////////////////////////////////////////////////////////////////////
 document.forms[0].onsubmit = function (e) {
     let emptyForm = validation1.value === "" || validation2.value === "" || validation3.value === "";
     let invalidForm = isNaN(validation1.value) || isNaN(validation2.value) || isNaN(validation3.value);
@@ -64,9 +103,19 @@ document.forms[0].onsubmit = function (e) {
             photo1.appendChild(result);
             let priceCon = document.createElement("div");
             let priceHeader = document.createElement("h3");
-            let priceHeaderT = document.createTextNode("Your monthly Paid");
+            let priceHeaderT = document.createTextNode("");
+            let priceT = document.createTextNode("");
+            if (isActive) {
+                console.log("THe option1 is checked")
+                priceHeaderT = document.createTextNode("Your monthly Paid");
+                priceT = document.createTextNode(calculateMonthlyPayment(validation1, validation2, validation3));
+            }
+            else if (!isActive) {
+                console.log("The option2 is checked");
+                priceHeaderT = document.createTextNode("Your Total interest");
+                priceT = document.createTextNode(calculateInterestOnlyPayment(validation1, validation3));
+            }
             let priceP = document.createElement("p");
-            let priceT = document.createTextNode(CalculateMonthly(validation1, validation2, validation3));
 
             let paymentFather = document.createElement("div");
             paymentFather.className = "PayF";
@@ -75,8 +124,10 @@ document.forms[0].onsubmit = function (e) {
             priceHeader.appendChild(priceHeaderT);
             priceCon.appendChild(priceHeader);
             priceCon.appendChild(priceP);
+            priceHeader.style.cssText = "margin:20px 0px 0px 20px;";
+
             priceP.style.cssText = "color:#d7da2f; font-weight:bold; font-size:2.7em;";
-            priceCon.style.cssText = "color:white;display:flex;flex-direction:column;justify-content: flex-start;";
+            priceCon.style.cssText = "color:white;display:flex;flex-direction:column;justify-content: flex-start;width: fit-content;";
             priceCon.className = "priceCon";
             paymentFather.appendChild(priceCon);
             ////////////////////////////////////////////////////
@@ -87,15 +138,18 @@ document.forms[0].onsubmit = function (e) {
             paymentFather.appendChild(hr);
             let priceCon2 = document.createElement("div");
             let priceHeader2 = document.createElement("h3");
-            let priceHeaderT2 = document.createTextNode("Total you will pay over the term");
-            let priceP2 = document.createElement("p");
-            let priceT2 = document.createTextNode(CalculateMonthly(validation1, validation2, validation3));
 
+            let priceHeaderT2 = document.createTextNode("Total you will pay over the term");
+            let priceT2 = document.createTextNode(calculateTotalPayment(validation1, validation2, validation3));
+
+
+            let priceP2 = document.createElement("p");
+            priceP2.style.cssText = "font-weight:bold;align-self:flex-start;color:white;font-size:1.5em;"
+            priceCon2.style.cssText = "width:fit-content;display:flex;justify-content:flex-start;flex-direction:column;color:white;margin-left:25px;";
             priceP2.appendChild(priceT2);
             priceHeader2.appendChild(priceHeaderT2);
             priceCon2.appendChild(priceHeader2);
             priceCon2.appendChild(priceP2);
-            priceCon2.style.cssText = "color:white;"
             priceCon2.className = "priceCon2";
             paymentFather.appendChild(priceCon2);
 
@@ -132,11 +186,58 @@ radioCheck2.onclick = function () {
 
 }
 
-function CalculateMonthly(v1, v2, v3) {
-    let num = (v1.value / 12 / v2.value) + ((v1.value * v3.value * 0.01) / 12 / v2.value);
-    let n = num.toFixed(3);
-    return n;
+function calculateMonthlyPayment(mortgageAmount, termYears, annualInterestRatePercentage) {
+    // Convert annual interest rate to monthly interest rate
+    let annualInterestRate = annualInterestRatePercentage.value / 100;
+    let monthlyInterestRate = annualInterestRate / 12;
+
+    // Convert term in years to term in months
+    let termMonths = termYears.value * 12;
+
+    // Calculate monthly payment using the formula for an amortizing loan
+    let monthlyPayment = mortgageAmount.value * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -termMonths));
+    console.log(monthlyPayment);
+
+    // Round monthly payment to two decimal places
+    monthlyPayment = Math.round(monthlyPayment * 100) / 100;
+
+    return monthlyPayment;
 }
+///////////////THe montly Repayments by chatgpt;
+
+function calculateTotalPayment(mortgageAmount, termYears, annualInterestRatePercentage) {
+    // Convert annual interest rate percentage to decimal
+    let annualInterestRate = annualInterestRatePercentage.value / 100;
+
+    // Convert term in years to term in months
+    let termMonths = termYears.value * 12;
+
+    // Calculate monthly payment using the formula for an amortizing loan
+    let monthlyInterestRate = annualInterestRate / 12;
+    let monthlyPayment = mortgageAmount.value * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -termMonths));
+
+    // Calculate total payment over the term
+    let totalPayment = monthlyPayment * termMonths;
+
+    // Round total payment to two decimal places
+    totalPayment = Math.round(totalPayment * 100) / 100;
+
+    return totalPayment;
+}
+//for the totalPayment
+function calculateInterestOnlyPayment(mortgageAmount, annualInterestRatePercentage) {
+    // Convert annual interest rate percentage to decimal
+    let monthlyInterestRate = annualInterestRatePercentage.value / 100 / 12;
+
+    // Calculate monthly payment for interest-only mortgage
+    let monthlyPayment = mortgageAmount.value * monthlyInterestRate;
+
+    // Round monthly payment to two decimal places
+    monthlyPayment = Math.round(monthlyPayment * 100) / 100;
+
+    return monthlyPayment;
+}
+//// This is for the interest only
 let MFA = document.querySelector(".amountMor input[type='text']");
 MFA.onmousemove = function () {
 

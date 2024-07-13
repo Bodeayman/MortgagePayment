@@ -57,9 +57,16 @@ header {
 
 .amountMor input {
     padding-left: 25px;
-    background: url("assets/images/icon-calculator.svg") no-repeat left;
+
     background-size: 20px;
 }
+
+/* .amountMor::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: hsl(200, 24%, 40%);
+} */
 
 .amountMor input {
     width: 80%;
