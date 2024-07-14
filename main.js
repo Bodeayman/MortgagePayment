@@ -6,14 +6,16 @@ let validation2 = document.querySelector(".term input");
 let validation3 = document.querySelector(".rate input");
 let span1 = document.querySelectorAll("input[type='text'] ~ span");
 let valids = [validation1, validation2, validation3];
+document.querySelector(".re").style.backgroundColor = "#d7da2f";
+
 
 /////////////////////////////////////////////////////
 //////////////////////////Take care of this option///
 /////////////////////////////////////////////////////
 let option1 = document.getElementById("re");
 let option2 = document.getElementById("in");
-let isActive = false; // Initialize variable
-
+let isActive = true; // Initialize variable
+console.log(isActive)
 // Function to update isActive based on radio button selection
 function updateIsActive() {
 
@@ -48,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 //////////////// You have here the value of the option1.addEventListener
 /////////////////////////////////////////////////////////////////////////
+let initvalspan = ["$", "years", "%"];
 document.forms[0].onsubmit = function (e) {
     let emptyForm = validation1.value === "" || validation2.value === "" || validation3.value === "";
     let invalidForm = isNaN(validation1.value) || isNaN(validation2.value) || isNaN(validation3.value);
@@ -56,13 +59,15 @@ document.forms[0].onsubmit = function (e) {
         for (let i = 0; i < 3; i++) {
             valids[i].style.borderColor = "red";
             span1[i].innerHTML = "Invalid Field";
-            span1[i].style.cssText = "font-weight:bold;color:red;margin-top:10px;";
+            span1[i].style.cssText = "font-weight:bold;color:red;margin-top:0px;width:auto;overflow:auto;";
 
         }
         let timer = setTimeout(function () {
             for (let i = 0; i < 3; i++) {
                 valids[i].style.borderColor = "hsl(202, 55%, 16%)";
-                span1[i].innerHTML = "";
+                span1[i].style.cssText = "font-weight:weight;color:hsl(200, 24%, 40%);margin-top:0px;";
+
+                span1[i].innerHTML = initvalspan[i];
             }
         }, 3000);
 
@@ -107,13 +112,13 @@ document.forms[0].onsubmit = function (e) {
             let priceT = document.createTextNode("");
             if (isActive) {
                 console.log("THe option1 is checked")
-                priceHeaderT = document.createTextNode("Your monthly Paid");
-                priceT = document.createTextNode(calculateMonthlyPayment(validation1, validation2, validation3));
+                priceHeaderT = document.createTextNode("Your monthly Payments");
+                priceT = document.createTextNode(`$${calculateMonthlyPayment(validation1, validation2, validation3)}`);
             }
             else if (!isActive) {
                 console.log("The option2 is checked");
                 priceHeaderT = document.createTextNode("Your Total interest");
-                priceT = document.createTextNode(calculateInterestOnlyPayment(validation1, validation3));
+                priceT = document.createTextNode(`$${calculateInterestOnlyPayment(validation1, validation3)}`);
             }
             let priceP = document.createElement("p");
 
@@ -124,10 +129,10 @@ document.forms[0].onsubmit = function (e) {
             priceHeader.appendChild(priceHeaderT);
             priceCon.appendChild(priceHeader);
             priceCon.appendChild(priceP);
-            priceHeader.style.cssText = "margin:20px 0px 0px 20px;";
+            priceHeader.style.cssText = "margin:20px 0px 0px 20px;font-size:0.9em;color:hsl(203, 41%, 72%);";
 
-            priceP.style.cssText = "color:#d7da2f; font-weight:bold; font-size:2.7em;";
-            priceCon.style.cssText = "color:white;display:flex;flex-direction:column;justify-content: flex-start;width: fit-content;";
+            priceP.style.cssText = "color:#d7da2f; font-weight:bold; font-size:3em;";
+            priceCon.style.cssText = "color:white;display:flex;flex-direction:column;justify-content: flex-start;width: fit-content;padding-left:20px;";
             priceCon.className = "priceCon";
             paymentFather.appendChild(priceCon);
             ////////////////////////////////////////////////////
@@ -145,7 +150,7 @@ document.forms[0].onsubmit = function (e) {
 
             let priceP2 = document.createElement("p");
             priceP2.style.cssText = "font-weight:bold;align-self:flex-start;color:white;font-size:1.5em;"
-            priceCon2.style.cssText = "width:fit-content;display:flex;justify-content:flex-start;flex-direction:column;color:white;margin-left:25px;";
+            priceCon2.style.cssText = "width:fit-content;display:flex;justify-content:flex-start;flex-direction:column;color:white;margin-left:20px;padding-left:20px;";
             priceP2.appendChild(priceT2);
             priceHeader2.appendChild(priceHeaderT2);
             priceCon2.appendChild(priceHeader2);

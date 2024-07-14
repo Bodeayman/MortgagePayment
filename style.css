@@ -56,17 +56,45 @@ header {
 
 
 .amountMor input {
-    padding-left: 25px;
-
     background-size: 20px;
 }
 
-/* .amountMor::before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background-color: hsl(200, 24%, 40%);
-} */
+.input1 span,
+.input2 span,
+.input3 span {
+    overflow: hidden;
+    position: relative;
+    font-weight: bold;
+    right: 5%;
+    color: hsl(200, 24%, 40%);
+    background-color: hsl(202, 86%, 94%);
+    padding: 12px;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+    border: 1px solid hsl(200, 24%, 40%);
+    border-left: 1px solid transparent;
+}
+
+.input3 span {
+    padding: 10px;
+}
+
+.input1 span {
+    position: relative;
+    right: 15%;
+    padding: 12px;
+}
+
+
+.input1,
+.input2,
+.input3 {
+    display: flex;
+
+}
 
 .amountMor input {
     width: 80%;
@@ -91,8 +119,8 @@ header {
 
 }
 
-header input[type='reset']:hover {
-    color: 'white';
+input[type='reset'] {
+    padding: 0px;
 }
 
 .term input,
@@ -188,14 +216,11 @@ header input[type='reset']:hover {
 
 }
 
-.butCon:hover {
-    cursor: pointer;
-    filter: brightness(1.05);
-    -webkit-filter: brightness(1.05);
-}
+
 
 input[type='text'] {
     padding: 10px;
+    border-right: none;
 }
 
 .butCon input {
@@ -240,6 +265,25 @@ input[type='text'] {
 
 input[type='text']:focus {
     outline-color: hsl(61, 70%, 52%);
+}
+
+input[type='text']:focus~span {
+    border-color: hsl(61, 70%, 52%);
+    border-width: 2px;
+    border-left: none;
+    padding: 11px;
+
+}
+
+.butCon:hover {
+    cursor: pointer;
+    filter: brightness(1.05);
+    -webkit-filter: brightness(1.05);
+}
+
+input[type='reset']:hover {
+    color: black;
+
 }
 
 @keyframes loading {
